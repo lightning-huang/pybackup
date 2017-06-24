@@ -20,7 +20,7 @@ def indexFilePath(folder, dataList):
         for j in i[2]:
             filepath = i[0] + os.sep + j
             relative2root = filepath[len(folder) + 1:]
-            if not relative2root.endswith("baiduyun.downloading"):
+            if not relative2root.endswith(file_ignore_suffix):
                 dataList.append(relative2root)
 
 
@@ -112,7 +112,7 @@ for i in os.walk(srcfolder):
     for j in i[2]:
         filepath = i[0] + os.sep + j
         s = os.stat(filepath)
-        if not filepath.endswith("baiduyun.downloading.cfg"):
+        if not filepath.endswith(file_ignore_suffix):
             diff = time.time() - s.st_mtime
             if diff/3600/24 > maxdays:
                 print filepath
